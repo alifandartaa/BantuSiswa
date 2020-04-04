@@ -28,19 +28,19 @@ import com.google.android.gms.maps.model.MarkerOptions
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback{
 
     private var TAG = "MapsActivity"
-    private var mMap: GoogleMap? = null
-    private val PERMISSION_ID = 42
-    private lateinit var mFusedLocationClient: FusedLocationProviderClient
-    private lateinit var mLocation : Location
+    private lateinit var mMap: GoogleMap
     var latitude = 0.0
     var longitude = 0.0
+
+    private lateinit var mLocation : Location
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
 
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -59,100 +59,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback{
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
 //        val myLoc = LatLng(-7.8574295, 113.2331977)
-        getLastLocation()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        checkPermissions()
-    }
-
-
-    private fun checkPermissions(): Boolean {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-            ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-            return true
-        }
-        return false
-    }
-
-    private fun requestPermissions() {
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION),
-            PERMISSION_ID
-        )
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        if (requestCode == PERMISSION_ID) {
-            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                // Granted. Start getting the location information
-            }
-        }
-    }
-
-    private fun isLocationEnabled(): Boolean {
-        val locationManager: LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
-            LocationManager.NETWORK_PROVIDER
-        )
-    }
-
-    private fun getLastLocation() {
-        if (checkPermissions()) {
-            if (isLocationEnabled()) {
-                mFusedLocationClient.lastLocation.addOnCompleteListener(this) { task ->
-                    val location: Location? = task.result
-                    if (location == null) {
-                        requestNewLocationData()
-                    } else {
-
-                        latitude = location.latitude
-                        longitude = location.longitude
-                        val myLoc = LatLng(latitude, longitude)
-                        Log.d(TAG, "maplatitude" + latitude + "maplongitude" + longitude)
-                        mMap!!.addMarker(MarkerOptions().position(myLoc)
-                            .title("My Location Marker")
-                            .snippet("coba")
-                            .draggable(true))
-                        mMap!!.moveCamera(CameraUpdateFactory.newLatLng(myLoc))
-                        mMap!!.isMyLocationEnabled = true
-//                        Log.d(TAG, "latitude" + latitude + "longitude" + longitude)
-
-                    }
-                }
-            } else {
-                Toast.makeText(this, "Turn on location", Toast.LENGTH_LONG).show()
-                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-                startActivity(intent)
-            }
-        } else {
-            requestPermissions()
-        }
-    }
-
-    @SuppressLint("MissingPermission")
-    private fun requestNewLocationData() {
-        val mLocationRequest = LocationRequest()
-        mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        mLocationRequest.interval = 10000
-        mLocationRequest.fastestInterval = 5000
-
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        mFusedLocationClient.requestLocationUpdates(
-            mLocationRequest, mLocationCallback,
-            Looper.myLooper()
-        )
-    }
-
-    private val mLocationCallback = object : LocationCallback() {
-        override fun onLocationResult(locationResult: LocationResult) {
-            val mLastLocation: Location = locationResult.lastLocation
-            latitude = mLastLocation.latitude
-            longitude = mLastLocation.longitude
-        }
+        latitude = intent.getDoubleExtra("extra_lat", 0.0)
+        longitude = intent.getDoubleExtra("extra_long", 0.0)
+        val myLoc = LatLng(latitude, longitude)
+        Log.d(TAG, "maplatitude" + latitude + "maplongitude" + longitude)
+        mMap!!.addMarker(MarkerOptions().position(myLoc)
+            .title("My Location Marker")
+            .snippet("coba")
+            .draggable(true))
+        mMap!!.moveCamera(CameraUpdateFactory.newLatLng(myLoc))
     }
 
 }

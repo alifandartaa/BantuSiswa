@@ -55,8 +55,8 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                                     }
                             }
                         }
-                    val loginIntent = Intent(this@RegisterActivity, LoginActivity::class.java)
-                    startActivity(loginIntent)
+//                    val loginIntent = Intent(this@RegisterActivity, LoginActivity::class.java)
+//                    startActivity(loginIntent)
                 }
             }
         }
