@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1081462869162",
+    "firebase_url": "https://bantusiswa-fe682.firebaseio.com",
+    "project_id": "bantusiswa-fe682",
+    "storage_bucket": "bantusiswa-fe682.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081462869162:android:7ccc7706e45760a3ead4d3",
+        "android_client_info": {
+          "package_name": "com.example.bantusiswa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081462869162-cc5oojmbjdhrolulsstdugibkbl7ua2h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfs9FAyngqmfXgXMUL6ec5mkh-snarOgM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081462869162-cc5oojmbjdhrolulsstdugibkbl7ua2h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

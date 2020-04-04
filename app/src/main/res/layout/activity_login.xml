@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".activity.LoginActivity">
+
+    <ImageView
+        android:id="@+id/bg_header"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:contentDescription="@string/header"
+        android:src="@drawable/img_header_login" />
+
+    <ImageView
+        android:id="@+id/bg_footer"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="25dp"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitXY"
+        android:contentDescription="@string/header"
+        android:src="@drawable/img_footer_login" />
+
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/bg_header"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="@string/login"
+        android:layout_marginBottom="-16dp"
+        android:textAllCaps="true"
+        android:textSize="48sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_uname"
+                android:transitionName="Username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:layout_below="@id/tv_login"
+                android:layout_marginHorizontal="60dp"
+                android:layout_gravity="center"
+                android:textStyle="bold">
+                <EditText
+                    android:id="@+id/et_login_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableStart="@drawable/ic_account_circle_24dp"
+                    android:drawablePadding="8dp"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:importantForAutofill="no" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ti_password"
+                android:transitionName="Password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_below="@id/ti_uname"
+                app:passwordToggleEnabled="true"
+                android:layout_marginHorizontal="60dp"
+                android:textStyle="bold">
+
+                <EditText
+                    android:id="@+id/et_login_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableStart="@drawable/ic_lock_outline_24dp"
+                    android:drawablePadding="8dp"
+                    android:hint="@string/password"
+                    android:importantForAutofill="no"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_login_enter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:layout_marginTop="36dp"
+        android:layout_below="@id/ti_password"
+        android:background="@drawable/bg_style_button"
+        android:textSize="18sp"
+        android:fontFamily="@font/open_sans_regular"
+        android:textColor="@color/colorWhite"
+        android:layout_marginHorizontal="60dp"/>
+
+    <TextView
+        android:id="@+id/tv_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register"
+        android:layout_below="@id/btn_login_enter"
+        android:layout_marginTop="24dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorRedRose"
+        android:fontFamily="@font/open_sans_regular"
+        android:textSize="18sp"/>
+</RelativeLayout>
